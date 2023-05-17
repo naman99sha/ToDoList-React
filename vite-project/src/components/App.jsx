@@ -1,7 +1,6 @@
 import { useState } from "react"
-import "./styles.css"
 import { NewTodoForm } from "./NewTodoForm"
-import { ToDoList } from "./ToDoList"
+import { ToDoList } from "../ToDoList"
 
 export default function App(){
   const[itemList, setItemList] = useState([]);
