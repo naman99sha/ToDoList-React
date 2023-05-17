@@ -1,17 +1,17 @@
 import { useState } from "react"
 import "./styles.css"
+import { NewTodoForm } from "./NewTodoForm"
+
 export default function App(){
-  const[newItem, setItem] = useState("");
   const[itemList, setItemList] = useState([]);
 
-  function addItem(event){
-    event.preventDefault();
+  function addItem(title){
     setItemList(prevItem => {
-      return [...itemList, {
-        id: crypto.randomUUID(), title: newItem, completed: false
-      }];
+    return [...itemList, {
+        id: crypto.randomUUID(), title, completed: false
+    }];
     });
-    setItem("");
+    
   }
 
   function handleComplete(id, checked){
@@ -33,13 +33,7 @@ export default function App(){
 
   return (
   <>
-  <form className="new-item-form">
-    <div className="form-row">
-      <label htmlFor="item">New Item</label>
-      <input type="text" id="item" onChange={e => setItem(e.target.value)} value={newItem}></input>
-      <button className="btn" onClick={addItem}>Add</button>
-    </div>
-  </form>
+  <NewTodoForm onSubmit={addItem}/>
   <h1 className="header">ToDo List</h1>
   <ul className="list">
     {itemList.length === 0 && "No Todo Items"}
